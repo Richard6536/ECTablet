@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.MapFragment">
+
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.mapbox.mapboxsdk.maps.MapView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="95px"
+        android:gravity="right"
+        android:background="@drawable/gradient_mapview">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="15px"
+            android:paddingBottom="15px"
+            android:paddingLeft="10px"
+            android:paddingRight="10px"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_asset_battery_light"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="15px"
+            android:paddingBottom="15px"
+            android:paddingLeft="10px"
+            android:paddingRight="10px"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_asset_navigation_light"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_map_search"
+        android:layout_marginLeft="50px"
+        android:layout_marginTop="100px">
+        <fragment
+            android:id="@+id/autocomplete_fragment"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+            />
+    </RelativeLayout>
+
+</FrameLayout>

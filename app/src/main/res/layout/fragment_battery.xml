@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.BatteryFragment"
+    android:background="#545454">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <RelativeLayout
+                android:background="#9A2C2C2C"
+                android:layout_margin="100px"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="750px">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Voltage"
+                        android:textSize="80px"
+                        android:layout_margin="40px"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Energía Restante"
+                        android:textSize="80px"
+                        android:layout_margin="40px"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Capacidad Total"
+                        android:textSize="80px"
+                        android:layout_margin="40px"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Temperatura"
+                        android:textSize="80px"
+                        android:layout_margin="40px"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="140px"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="40px"
+                        android:textColor="#39C53E"
+                        android:textStyle="bold"
+                        android:text="   375v"
+                        android:textSize="80px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="40px"
+                        android:textColor="#39C53E"
+                        android:textStyle="bold"
+                        android:text="           260Ah                    "
+                        android:textSize="80px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="40px"
+                        android:text="270Ah                "
+                        android:textColor="#39C53E"
+                        android:textSize="80px"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="40px"
+                        android:textColor="#39C53E"
+                        android:textStyle="bold"
+                        android:text="30°C      "
+                        android:textSize="80px" />
+                </LinearLayout>
+            </RelativeLayout>
+        <RelativeLayout
+            android:layout_margin="100px"
+            android:background="#9A2C2C2C"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="750px">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="191dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="100px"
+        android:src="@drawable/ic_asset_battery_light" />
+    <ImageView
+        android:layout_width="191dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="100px"
+        android:src="@drawable/ic_asset_battery_light" />
+    <ImageView
+        android:layout_width="191dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="100px"
+        android:src="@drawable/ic_asset_battery_light" />
+    <ImageView
+        android:layout_width="191dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="100px"
+        android:src="@drawable/ic_asset_battery_light" />
+</LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40px"
+        android:layout_marginBottom="200px"
+        android:textColor="#39C53E"
+        android:textStyle="bold"
+        android:text="    93,75v     "
+        android:textSize="80px" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40px"
+        android:textColor="#39C53E"
+        android:textStyle="bold"
+        android:text="93,75v     "
+        android:textSize="80px" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40px"
+        android:textColor="#39C53E"
+        android:textStyle="bold"
+        android:text="93,75v     "
+        android:textSize="80px" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40px"
+        android:textColor="#39C53E"
+        android:textStyle="bold"
+        android:text="93,75v      "
+        android:textSize="80px" />
+</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vida de Batería"
+                android:layout_marginLeft="1660px"
+                android:layout_marginTop="280px"
+                android:textSize="80px"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100%      "
+                android:layout_marginLeft="1800px"
+                android:layout_marginTop="420px"
+                android:textColor="#39C53E"
+                android:textSize="100px"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ECTablet</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mapbox_id">pk.eyJ1IjoiemVyb2RzIiwiYSI6ImNqZHhnaWlpcTAxa3MycW5xZ2g1dDEydXkifQ.AHkuaAWcgu69eXCwJlLvpw</string>
+</resources>
