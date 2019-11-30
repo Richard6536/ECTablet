@@ -4,7 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#545454"
-    tools:context=".Fragments.StatsFragment">
+    tools:context=".Fragments.d.StatsFragment">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:layout_marginLeft="100px"
+        android:layout_marginTop="100px"
+        android:text="Voltaje"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_marginLeft="100px"

@@ -1,13 +1,10 @@
 package com.example.richard.ectablet.Activity;
 
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.hardware.usb.UsbDevice;
-import android.hardware.usb.UsbManager;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.richard.ectablet.R;
@@ -17,7 +14,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.util.HashMap;
 
 import me.aflak.arduino.Arduino;
 import me.aflak.arduino.ArduinoListener;

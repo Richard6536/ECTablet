@@ -8,15 +8,18 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
-import android.os.Bundle;
+import android.os.AsyncTask;
 import android.os.IBinder;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.richard.ectablet.Activity.MainActivity;
+import com.example.richard.ectablet.Clases.Vehiculo;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,6 +31,7 @@ public class BluetoothReceiveService extends Service {
     private static String btAdress = "00:00:00:00:00:00";
     private static final UUID MY_UUID = UUID.fromString("08C2B2EF-7C87-3D00-0CDC-9A2ADC420BFF");
     public BluetoothDevice device;
+    BluetoothServerSocket serverSocket;
 
     private static final int DISCOVERABLE_REQUEST_CODE = 0x1;
     private boolean CONTINUE_READ_WRITE = true;
@@ -69,80 +73,118 @@ public class BluetoothReceiveService extends Service {
     private InputStream is;
     private OutputStreamWriter os;
 
+
     private Runnable reader = new Runnable() {
         public void run() {
             BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
             try {
-                BluetoothServerSocket serverSocket = adapter.listenUsingRfcommWithServiceRecord("RosieProject", MY_UUID);
-                Log.d("BT","Listening...");
-                Log.d("BT","Socket accepted...");
+                serverSocket = adapter.listenUsingRfcommWithServiceRecord("RosieProject", MY_UUID);
+                Log.d("0092bluet","Listening...");
+                Log.d("0092bluet","Socket accepted...");
 
-                int bufferSize = 1024;
+                int bufferSize = 1008;
                 int bytesRead = -1;
+                int bytesFinalRead = 0;
+
                 byte[] buffer = new byte[bufferSize];
-                Log.d("BT","Keep reading the messages while connection is open...");
+                Log.d("0092bluet","Keep reading the messages while connection is open...");
                 //Keep reading the messages while connection is open...
                 while(CONTINUE_READ_WRITE){
                     socket = serverSocket.accept();
                     //addViewOnUiThread("TrackingFlow. Socket accepted...");
                     is = socket.getInputStream();
-                    os = new OutputStreamWriter(socket.getOutputStream());
-
+                    String result = "";
                     final StringBuilder sb = new StringBuilder();
+
                     bytesRead = is.read(buffer);
                     if (bytesRead != -1) {
-                        String result = "";
-                        while ((bytesRead == bufferSize) && (buffer[bufferSize-1] != 0)){
-                            result = result + new String(buffer, 0, bytesRead - 1);
+
+                        while (bytesRead == bufferSize){
+                            result = result + new String(buffer, 0, bytesRead);
                             bytesRead = is.read(buffer);
                         }
-                        result = result + new String(buffer, 0, bytesRead - 1);
+
+                        result = result + new String(buffer, 0, bytesRead);
                         sb.append(result);
 
                         os = new OutputStreamWriter(socket.getOutputStream());
                         os.write("ok");
 
-                        /*
-                        int numb = Integer.parseInt(result);
-                        if(numb % 10 == 0){
-                            os.write("No se permite el numero " + numb);
-                        }
-                        else{
-                            os.write("ok");
-                        }*/
                         os.flush();
                         os.close();
 
-
-                        is.close();
-                        socket.close();
                     }
 
-                    Log.d("BT","Read: " + sb.toString());
+                    Log.d("0092bluet","Read: " + sb.toString());
 
-                    sendMessageToActivity(sb.toString());
-                    //addViewOnUiThread("TrackingFlow. Read: " + sb.toString());
-                    //Show message on UIThread
-                    /*
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mensaje.setText(sb.toString());
-                            //Toast.makeText(getApplicationContext(), sb.toString(), Toast.LENGTH_LONG).show();
+                    try {
+
+                        JSONArray jsonArrayEnviar = new JSONArray();
+                        JSONArray jsonArray = new JSONArray(sb.toString());
+                        String voltaje = "";
+                        String fecha = "";
+
+                        for(int x = 0; x <jsonArray.length(); x++){
+                            String str = jsonArray.getString(x);
+                            JSONObject jsonObject = new JSONObject(str);
+
+                            fecha = jsonObject.getString("Fecha");
+                            String estimacionSoc = jsonObject.getString("EstimacionSoc");
+                            String confIntervalSoc1 = jsonObject.getString("ConfIntervalSoc1");
+                            String confIntervalSoc2 = jsonObject.getString("ConfIntervalSoc2");
+                            String estimacionSompa = jsonObject.getString("EstimacionSompa");
+                            String confIntervalSompa1 = jsonObject.getString("ConfIntervalSompa1");
+                            String confIntervalSompa2 = jsonObject.getString("ConfIntervalSompa2");
+                            String estimacionRin = jsonObject.getString("EstimacionRin");
+                            String confIntervalRin1 = jsonObject.getString("ConfIntervalRin1");
+                            String confIntervalRin2 = jsonObject.getString("ConfIntervalRin2");
+                            String corriente = jsonObject.getString("Corriente");
+                            voltaje = jsonObject.getString("Voltaje");
+
+                            JSONObject jsonObjectEnviar = new JSONObject();
+                            jsonObjectEnviar.put("FechaHoraString", fecha);
+                            jsonObjectEnviar.put("EstimacionSoc", estimacionSoc);
+                            jsonObjectEnviar.put("ConfIntervalSoc1", confIntervalSoc1);
+                            jsonObjectEnviar.put("ConfIntervalSoc2", confIntervalSoc2);
+                            jsonObjectEnviar.put("EstimacionSompa", estimacionSompa);
+                            jsonObjectEnviar.put("ConfIntervalSompa1", confIntervalSompa1);
+                            jsonObjectEnviar.put("ConfIntervalSompa2", confIntervalSompa2);
+                            jsonObjectEnviar.put("EstimacionRin", estimacionRin);
+                            jsonObjectEnviar.put("ConfIntervalRin1", confIntervalRin1);
+                            jsonObjectEnviar.put("ConfIntervalRin2", confIntervalRin2);
+                            jsonObjectEnviar.put("Corriente", corriente);
+                            jsonObjectEnviar.put("Voltaje", voltaje);
+
+                            jsonArrayEnviar.put(jsonObjectEnviar);
+
                         }
-                    });*/
+
+                        int v = 0;
+                        new Vehiculo.ActualizarPosicion().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, jsonArrayEnviar.toString());
+                        sendMessageToActivity(voltaje, fecha);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                 }
+
+                is.close();
+                socket.close();
+
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.d("BT","Error: " + e.getMessage());
+                Log.d("0092bluet","Error: " + e.getMessage());
             }
         }
     };
 
-    private void sendMessageToActivity(String msg) {
+
+    private void sendMessageToActivity(String voltaje, String fecha) {
         Intent intent = new Intent("intentKey");
         // You can also include some extra data.
-        intent.putExtra("key", msg);
+        intent.putExtra("VOLTAJE", voltaje);
+        intent.putExtra("FECHA", fecha);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 }

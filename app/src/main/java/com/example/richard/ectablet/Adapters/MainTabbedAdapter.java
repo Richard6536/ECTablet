@@ -1,11 +1,11 @@
 package com.example.richard.ectablet.Adapters;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.richard.ectablet.Fragments.BatteryFragment;
-import com.example.richard.ectablet.Fragments.MapFragment;
+import com.example.richard.ectablet.Fragments.d.BatteryFragment;
+import com.example.richard.ectablet.Fragments.d.MapFragment;
 
 public class MainTabbedAdapter extends FragmentPagerAdapter {
     int mNumOfTabs;

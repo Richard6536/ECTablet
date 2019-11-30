@@ -1,4 +1,4 @@
-package com.example.richard.ectablet.Fragments;
+package com.example.richard.ectablet.Fragments.d;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
