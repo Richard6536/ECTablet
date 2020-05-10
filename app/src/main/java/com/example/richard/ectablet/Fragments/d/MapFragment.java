@@ -8,14 +8,20 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.richard.ectablet.Clases.MapBoxManager;
 import com.example.richard.ectablet.R;
 
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.suke.widget.SwitchButton;
 
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
@@ -23,7 +29,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private View view;
     private MapBoxManager mapBoxBManager = new MapBoxManager();
 
-
+    public static TextView duration, distance;
+    BottomSheetBehavior sheetBehavior;
+    private LinearLayout bottom_sheet;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +39,44 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         view = inflater.inflate(R.layout.fragment_map, container, false);
 
         mapBoxBManager.InicializarMapBox(this, view, savedInstanceState);
+
+
+
+        /**
+        duration = view.findViewById(R.id.txtDuration);
+        distance = view.findViewById(R.id.txtDistance);
+
+        bottom_sheet = view.findViewById(R.id.bottom_sheet);
+        sheetBehavior = BottomSheetBehavior.from(bottom_sheet);
+
+         * bottom sheet state change listener
+         * we are changing button text when sheet changed state
+         *
+
+        sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                        break;
+                    case BottomSheetBehavior.STATE_EXPANDED:
+                        break;
+                    case BottomSheetBehavior.STATE_COLLAPSED:
+                        break;
+                    case BottomSheetBehavior.STATE_DRAGGING:
+                        break;
+                    case BottomSheetBehavior.STATE_SETTLING:
+                        break;
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
+         */
 
         return view;
     }

@@ -16,7 +16,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 
 import com.example.richard.ectablet.R;
-
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -36,6 +35,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ import com.example.richard.ectablet.Fragments.d.MapFragment;
 import com.example.richard.ectablet.Fragments.d.StatsFragment;
 import com.example.richard.ectablet.Services.BluetoothReceiveService;
 import com.example.richard.ectablet.Services.LocationService;
+import com.suke.widget.SwitchButton;
 
 import org.json.JSONArray;
 
@@ -96,6 +98,33 @@ public class MainActivity extends AppCompatActivity{
         actionBarActivity.view = mContentView;
         actionBarActivity.actionBar = getSupportActionBar();
 
+
+        /*
+        com.suke.widget.SwitchButton switchButton = (com.suke.widget.SwitchButton)
+                findViewById(R.id.switch_button);
+
+        switchButton.setChecked(true);
+        switchButton.isChecked();
+        switchButton.toggle();     //switch state
+        switchButton.toggle(true);//switch without animation
+        switchButton.setShadowEffect(true);//disable shadow effect
+        switchButton.setEnabled(true);//disable button
+        switchButton.setEnableEffect(true);//disable the switch animation
+        switchButton.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SwitchButton view, boolean isChecked) {
+                //TODO do your job
+            }
+        });
+*/
+        ImageView iv = (ImageView) findViewById(R.id.vector_battery_status);
+        iv.animate().rotation(90).start();
+
+        int width = 120;
+        int height = 90;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
+        iv.setLayoutParams(params);
+
         //Define navegación inferior e iconos en la vista principal
         DefineBottomNavigationView();
 
@@ -137,6 +166,7 @@ public class MainActivity extends AppCompatActivity{
 
         }
 
+       /*
         navigation.setRotation(90f);
         //navigation.getLayoutParams().width=480;
         navigation.requestLayout();
@@ -147,7 +177,7 @@ public class MainActivity extends AppCompatActivity{
             final View iconView = menuView.getChildAt(i);
             iconView.setRotation(-90f);
         }
-
+        */
     }
 
 
@@ -268,6 +298,7 @@ public class MainActivity extends AppCompatActivity{
         //addViewOnUiThread("TrackingFlow ");
         Log.d("BT","Creating thread to start listening...");
 
+        //Intent intent = new Intent(getBaseContext(), LocationService.class);
         Intent intent = new Intent(getBaseContext(), BluetoothReceiveService.class);
         startService(intent);
     }
@@ -279,10 +310,19 @@ public class MainActivity extends AppCompatActivity{
             //Se envían a los fragments correspondientes
 
             String voltaje = intent.getStringExtra("VOLTAJE");
+            String corriente = intent.getStringExtra("CORRIENTE");
+            String estimacionsompa = intent.getStringExtra("ESTIMACIONSOMPA");
+            String confintervalsompa1 = intent.getStringExtra("CONFINTERVALSOMPA1");
+            String confintervalsompa2 = intent.getStringExtra("CONFINTERVALSOMPA2");
             String fecha = intent.getStringExtra("FECHA");
 
             Bundle args = new Bundle();
             args.putString("VOLTAJE", voltaje);
+            args.putString("CORRIENTE", corriente);
+            args.putString("ESTIMACIONSOMPA", estimacionsompa);
+            args.putString("CONFINTERVALSOMPA1", confintervalsompa1);
+            args.putString("CONFINTERVALSOMPA2", confintervalsompa2);
+
             args.putString("FECHA", fecha);
 
             statsFragment.putArguments(args);

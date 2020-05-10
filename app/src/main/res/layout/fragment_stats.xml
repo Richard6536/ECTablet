@@ -5,24 +5,73 @@
     android:layout_height="match_parent"
     android:background="#545454"
     tools:context=".Fragments.d.StatsFragment">
-    <TextView
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:layout_marginLeft="100px"
-        android:layout_marginTop="100px"
-        android:text="Voltaje"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_marginLeft="100px"
-        android:layout_marginRight="100px"
-        android:layout_marginTop="150px"
-        android:layout_marginBottom="200px"
-        android:layout_height="match_parent">
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/chart"
+        android:fillViewport="true">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="40dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:layout_marginLeft="100px"
+                android:layout_marginBottom="20dp"
+                android:text="Voltaje Máximo: 58.62"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#ffffff"
+                android:layout_marginBottom="10px"/>
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart"
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:layout_marginBottom="90dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:layout_marginLeft="100px"
+                android:layout_marginBottom="20dp"
+                android:text="Corriente Máxima: 24.04"/>
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chartCorriente"
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:layout_marginBottom="90dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:layout_marginLeft="100px"
+                android:layout_marginBottom="20dp"
+                android:text="RIN"/>
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chartRin"
+                android:layout_width="match_parent"
+                android:layout_height="600dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:textSize="25dp"
+                android:layout_marginLeft="100px"
+                android:text=""/>
+        </LinearLayout>
+
+    </ScrollView>
 
 </FrameLayout>

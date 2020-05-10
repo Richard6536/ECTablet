@@ -145,6 +145,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                         mapboxMap.animateCamera(CameraUpdateFactory
                                 .newCameraPosition(position), 8000);
 
+
                     }
 
                     @Override

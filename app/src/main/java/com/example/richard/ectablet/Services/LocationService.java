@@ -1,6 +1,7 @@
 package com.example.richard.ectablet.Services;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -16,7 +17,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 
 
-import android.os.PowerManager;
 import android.util.Log;
 
 import com.example.richard.ectablet.Activity.MainActivity;
