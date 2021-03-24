@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 
 import android.util.Log;
@@ -32,7 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
-import static com.android.volley.VolleyLog.TAG;
+import static android.content.ContentValues.TAG;
 
 public class LocationService extends Service {
 
@@ -175,6 +176,7 @@ public class LocationService extends Service {
             //Enviar datos al webservice
             new Vehiculo.ActualizarDatos().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ja.toString(), vehiculoId, LLAVE, flotaId);
 
+            sendMessageToActivity(velocidadKm);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -252,5 +254,15 @@ public class LocationService extends Service {
         String fecha = diaS+"/"+mesS+"/"+anio+" "+hor+":"+min+":"+seg;
 
         return fecha;
+    }
+
+    private void sendMessageToActivity(int velocidad) {
+        Intent intent = new Intent("intentKey2");
+        // You can also include some extra data.
+        intent.putExtra("VELOCIDAD", velocidad + "");
+
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+
+
     }
 }

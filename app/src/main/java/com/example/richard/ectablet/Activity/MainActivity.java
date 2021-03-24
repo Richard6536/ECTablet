@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity{
     HideStatusBarNavigation hideStatusBarNavigation = new HideStatusBarNavigation();
     public View mContentView;
 
+    public TextView kmVelocidadText;
+
     final MapFragment mapFragment = new MapFragment();
     final BatteryFragment batteryFragment = new BatteryFragment();
     final StatsFragment statsFragment = new StatsFragment();
@@ -120,6 +122,8 @@ public class MainActivity extends AppCompatActivity{
         ImageView iv = (ImageView) findViewById(R.id.vector_battery_status);
         iv.animate().rotation(90).start();
 
+        kmVelocidadText = (TextView) findViewById(R.id.txtKmVelocidad);
+
         int width = 120;
         int height = 90;
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
@@ -135,6 +139,9 @@ public class MainActivity extends AppCompatActivity{
         //Se inicia LocalBroadcastManager para que el BluetoothReceiveService envie datos a la actividad
         LocalBroadcastManager.getInstance(this).registerReceiver(
                 mMessageReceiver, new IntentFilter("intentKey"));
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                mMessageReceiverPosition, new IntentFilter("intentKey2"));
 
         //Se solicitan permisos al usuario para hacer uso del Bluetooth
         Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
@@ -327,6 +334,17 @@ public class MainActivity extends AppCompatActivity{
 
             statsFragment.putArguments(args);
 
+        }
+    };
+
+    private BroadcastReceiver mMessageReceiverPosition = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //Recibe datos directamente desde el BluetoothReceiveService
+            //Se envían a los fragments correspondientes
+
+            String velocidad = intent.getStringExtra("VELOCIDAD");
+            kmVelocidadText.setText(velocidad);
         }
     };
 

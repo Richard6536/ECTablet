@@ -17,14 +17,30 @@
             android:layout_marginTop="50dp"
             android:layout_marginLeft="40dp"
             android:orientation="vertical">
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
-                android:layout_marginLeft="100px"
-                android:layout_marginBottom="20dp"
-                android:text="Voltaje Máximo: 58.62"/>
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:layout_weight="2">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="25dp"
+                    android:textSize="25dp"
+                    android:text="Voltaje"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:layout_marginRight="25dp"
+                    android:textSize="25dp"
+                    android:text="Voltaje Máximo: 58.62"/>
+
+            </LinearLayout>
+
 
             <View
                 android:layout_width="match_parent"
@@ -38,38 +54,71 @@
                 android:layout_height="600dp"
                 android:layout_marginBottom="90dp"/>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
-                android:layout_marginLeft="100px"
-                android:layout_marginBottom="20dp"
-                android:text="Corriente Máxima: 24.04"/>
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:layout_weight="2">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="25dp"
+                    android:textSize="25dp"
+                    android:text="Corriente"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:layout_marginRight="25dp"
+                    android:textSize="25dp"
+                    android:text="Corriente Máxima: 24.04"/>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#ffffff"
+                android:layout_marginBottom="10px"/>
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/chartCorriente"
                 android:layout_width="match_parent"
                 android:layout_height="600dp"
                 android:layout_marginBottom="90dp"/>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
-                android:layout_marginLeft="100px"
-                android:layout_marginBottom="20dp"
-                android:text="RIN"/>
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:layout_weight="2">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="25dp"
+                    android:textSize="25dp"
+                    android:text="RIN"/>
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#ffffff"
+                android:layout_marginBottom="10px"/>
+
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/chartRin"
                 android:layout_width="match_parent"
-                android:layout_height="600dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:textSize="25dp"
-                android:layout_marginLeft="100px"
-                android:text=""/>
+                android:layout_height="600dp"
+                android:layout_marginBottom="200dp"/>
         </LinearLayout>
 
     </ScrollView>
